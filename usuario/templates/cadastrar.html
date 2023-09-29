@@ -1,39 +1,48 @@
 {% extends "base.html" %}
-{% load static %}
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    {% block 'titulo' %} Cadastro {% endblock 'titulo' %}
-</head>
+
+
+{% block 'titulo' %} Cadastro {% endblock 'titulo' %}
+
 {% block 'conteudo' %}
     <div class="container">
-        <br>
+        <br>  
         <div class="row">
-            <div class="col-md-3">          
+
+            <div class="col-md-3">       
+
             </div>
-            <div class="col-md-4">
+
+            <div class="col-md">
                 <h1>Cadastrese-se</h1>
                 <hr>            
-                <form action "{% url "validação" %}"method='POST'> 
-                    {% csrf_token %}
+                <form action="{% url 'validação' %}" method='POST'> {% csrf_token %}
+
                         <label>Nome</label>
-                        <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome...">
+                        <input class="form-control" type="text" name="nome" placeholder="Nome...">
                         <br>
                         <label>Email</label>
-                        <input class="form-control"type="text" id="email" name="email" placeholder="Email...">
+                        <input class="form-control"type="text" name="email" placeholder="Email...">
                         <br>
                         <label>Login</label>
-                        <input class="form-control" type="text" id="login" name="login" placeholder="Login...">
+                        <input class="form-control" type="text" name="login" placeholder="Login...">
                         <br>
                         <label>Senha</label>
-                        <input class="form-control" type="password" id="senha" name="senha" placeholder="Senha...">
+                        <input class="form-control" type="password" name="senha" placeholder="Senha...">
                         <br>
                         <label>Confirmar Senha</label>
-                        <input class="form-control" type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirmar senha...">
+                        <input class="form-control" type="password" name="conf_senha" placeholder="Confirmar senha...">
                         <br>
-                        <input class="btn btn-info btn-lg" type="button" value="Enviar"> 
+                        <input class="btn btn-info btn-lg" type="submit" value="Enviar">
+                        <a href="#" class="btn btn-info btn-lg" >LOGIN</a>
+
                 </form>
             </div>
+            <div class="col-md-3">
+
+            </div>
+
         </div>           
     </div>
+
+
 {% endblock%}
