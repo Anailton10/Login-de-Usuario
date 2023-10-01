@@ -13,7 +13,7 @@ def cadastrar(request):
     return render(request, 'cadastrar.html')
 
 
-def validação(request):
+def valida_cadastro(request):
     email = request.POST.get('email')
     nome = request.POST.get('nome')
     senha = request.POST.get('senha')
@@ -53,6 +53,10 @@ def validação(request):
     except:
         messages.add_message(request, constants.ERROR,
                              "Ocorreu uma erro ao se Cadastrar!")
+
+
+def valida_login(request):
+    pass
 
 
 def recuperar(request):
