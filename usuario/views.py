@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Cadastro
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -51,13 +52,18 @@ def valida_cadastro(request):
                              "Conta Cadastrada com Sucesso!")
         return redirect('/cadastrar/')
     except:
-        messages.add_message(request, constants.ERROR,
-                             "Ocorreu uma erro ao se Cadastrar!")
+        return redirect('/cadastrar/')
 
 
 def valida_login(request):
-    pass
+    email = request.POST.get('email')
+    senha = request.POST.get('senha')
+    usuario = Cadastro.objects.filter(email=email).filter(senha=senha)
 
-
-def recuperar(request):
-    return render(request, 'recuperar.html')
+    if usuario == 0:
+        messages.add_message(request, constants.ERROR,
+                             "Email ou Senha incorreta!")
+        return redirect(request, '/login/')
+    if len(usuario) > 0:
+        request.session['usuario'] = usuario[0].id
+    return redirect(request, '/home/')
